@@ -3,6 +3,7 @@ require 'erb'
 require 'resque'
 require 'resque/version'
 require 'time'
+require 'newrelic_rpm'
 
 if defined? Encoding
   Encoding.default_external = Encoding::UTF_8
@@ -11,6 +12,7 @@ end
 module Resque
   class Server < Sinatra::Base
     require 'resque/server/helpers'
+    newrelic_ignore if defined?(NewRelic)
 
     dir = File.dirname(File.expand_path(__FILE__))
 
