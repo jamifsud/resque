@@ -11,6 +11,7 @@ end
 module Resque
   class Server < Sinatra::Base
     require 'resque/server/helpers'
+    newrelic_ignore if defined?(NewRelic)
 
     dir = File.dirname(File.expand_path(__FILE__))
 
